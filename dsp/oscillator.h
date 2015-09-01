@@ -230,6 +230,9 @@ class Oscillator {
             slave_phase_at_reset -= 1.0f;
             transition_during_reset = true;
           }
+          if (!high_ && slave_phase_at_reset >= pw) {
+            transition_during_reset = true;
+          }
           float value = ComputeNaiveSample(slave_phase_at_reset, pw, waveshape);
           this_sample -= value * ThisBlepSample(reset_time);
           next_sample -= value * NextBlepSample(reset_time);
